@@ -1,0 +1,35 @@
+APP_DEBUG: true
+
+dbType: "mysql"
+mysql:
+  host: "127.0.0.1"
+  dataBase: "db_stocks"
+  port: 3308
+  prefix: "tb_"
+  user: "root"
+  password: "DRsXT5ZJ6Oi55LPQ"
+  maxIdleConns: 10
+  maxOpenConns: 128
+  connMaxLifetime: 60
+  pingFailRetryTimes: 3
+
+redis:
+  host: "127.0.0.1"
+  port: 6379
+  auth: ""
+  maxIdle: 10
+  maxActive: 1000
+  idleTimeout: 60
+  indexDb: 1
+
+othersDemoConfig:
+  name: "foo"
+  alias: "bar"
+  sex: 1
+  age: 18
+  favorites:
+    - "array demo"
+    - "go"
+    - "php"
+    - "swoole"
+    - "python"
