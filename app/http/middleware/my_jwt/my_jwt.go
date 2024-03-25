@@ -7,19 +7,19 @@ import (
 	"time"
 )
 
-// 定义一个 JWT验签 结构体
-type JwtSign struct {
-	SigningKey []byte
-}
-
-// 使用工厂模式创建一个 JWT 结构体 （）
-func CreateMyJwt(signKey string) *JwtSign {
+// 使用工厂创建一个 JWT 结构体
+func CreateMyJWT(signKey string) *JwtSign {
 	if len(signKey) <= 0 {
-		signKey = "go-admin"
+		signKey = "goskeleton"
 	}
 	return &JwtSign{
 		[]byte(signKey),
 	}
+}
+
+// 定义一个 JWT验签 结构体
+type JwtSign struct {
+	SigningKey []byte
 }
 
 // CreateToken 生成一个token
