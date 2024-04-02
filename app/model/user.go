@@ -293,3 +293,18 @@ func (u *UsersModel) DelTokenCacheFromRedis(userId int64) {
 	tokenCacheRedisFact.ClearUserToken()
 	tokenCacheRedisFact.ReleaseRedisConn()
 }
+
+//删除用户以及关联的token记录
+func (u *UsersModel) Destroy(id int) bool {
+
+	// 删除用户时，清除用户缓存在redis的全部token
+	if variable.ConfigYml.GetInt("Token.IsCacheToRedis") == 1 {
+		go u.DelTokenCacheFromRedis(int64(id))
+	}
+	if u.Delete(u, id).Error == nil {
+		if u.OauthDestroyToken(id) {
+			return true
+		}
+	}
+	return false
+}
